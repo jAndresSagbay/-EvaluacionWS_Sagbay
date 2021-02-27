@@ -17,25 +17,29 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Cliente implements Serializable{
+public class Cliente implements Serializable {
+
 	
-	private static final long serialVersionUID = 1L;
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7079790634436582390L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String cedula;
 	private String Nombre;
 	private String apellido;
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cuenta;
+	
 	@JsonIgnore
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_credito_id")
     private List<Credito> creditos;
 	
 	
-	public void addCuenta(Credito credito) {
+	public void addCredito(Credito credito) {
 		if (creditos == null) {
 			creditos = new ArrayList<>();
 		}
@@ -109,7 +113,5 @@ public class Cliente implements Serializable{
 		return "Cliente [id=" + id + ", cedula=" + cedula + ", Nombre=" + Nombre + ", apellido=" + apellido
 				+ ", cuenta=" + cuenta + ", creditos=" + creditos + "]";
 	}
-
 	
-
 }

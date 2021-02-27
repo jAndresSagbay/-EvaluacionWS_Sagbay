@@ -4,24 +4,22 @@ import java.util.List;
 
 import ec.edu.ups.appdis.g1.clienteRest.model.Fachada;
 import ec.edu.ups.appdis.g1.clienteRest.model.Respuesta;
-import ec.edu.ups.appdis.g1.clienteRest.model.TransaccionFachada;
-
-
 
 public class Main {
 
 	public static void main(String args[]) {
 		
 		//CategoriasCli cli = new CategoriasCli();
-		TransaccionCli cliente= new TransaccionCli();
+		//TransaccionCli cliente= new TransaccionCli();
 		FachadaCli cli = new FachadaCli();
 		Fachada fachada= new Fachada();
-		fachada.setNumeroCuenta(1);
+		fachada.setNumeroCuenta(2);
+		fachada.setCedula("0105432015");
 		fachada.setNumerodemesesplazo(2);
 		fachada.setValorDecredito(200.0);
 		
 		Respuesta respuesta = cli.registra(fachada);
-		System.out.println("Retiro: "+respuesta);
+		System.out.println("Respuesta dek servidor: "+respuesta);
 		/*
 		
 		TransaccionFachada trf= new TransaccionFachada();

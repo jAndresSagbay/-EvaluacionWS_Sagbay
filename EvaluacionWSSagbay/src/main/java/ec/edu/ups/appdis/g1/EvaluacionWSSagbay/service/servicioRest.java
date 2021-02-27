@@ -23,19 +23,21 @@ public class servicioRest {
 	@Path("/guardar")
 	@Produces("application/json")
 	@Consumes("application/json")
-
 	public Respuesta transacciones(Fachada trx) {
 		Respuesta r = new Respuesta();
+		System.out.println("<<<server>>  "+trx.toString());
 		try {
-			r =gestionon.CrearPoliza(trx);
+			r =gestionon.crearPoliza(trx);
+			//gestionon.crearPoliza(trx);
 		} catch (Exception e) {
 			e.printStackTrace();
 			r.setCodigo(99);
-			r.setMensaje(e.getMessage());
+			r.setMensaje(/*e.getMessage()*/"error cuenta no existe");
+			System.out.println("serverError>>  "+trx.toString());
 		}
 		return r;
 	}
-	
+
 	@GET
 	@Path("cuotas")
 	@Produces("application/json")

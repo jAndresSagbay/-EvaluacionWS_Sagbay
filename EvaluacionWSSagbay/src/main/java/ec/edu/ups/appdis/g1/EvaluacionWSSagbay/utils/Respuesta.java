@@ -5,6 +5,8 @@ public class Respuesta {
 	private int codigo;
 	private String mensaje;
 
+	
+	
 	public int getCodigo() {
 		return codigo;
 	}

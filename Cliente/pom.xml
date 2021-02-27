@@ -6,6 +6,7 @@
 	<artifactId>Cliente</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<dependencies>
+	
 		<dependency>
 			<groupId>javax.ws.rs</groupId>
 			<artifactId>javax.ws.rs-api</artifactId>

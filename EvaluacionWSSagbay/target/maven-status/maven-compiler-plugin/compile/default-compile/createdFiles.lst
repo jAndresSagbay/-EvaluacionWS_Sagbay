@@ -1,0 +1,13 @@
+ec\edu\ups\appdis\g1\EvaluacionWSSagbay\model\Cuota.class
+ec\edu\ups\appdis\g1\EvaluacionWSSagbay\on\GestionON.class
+ec\edu\ups\appdis\g1\EvaluacionWSSagbay\dao\CreditoDao.class
+ec\edu\ups\appdis\g1\EvaluacionWSSagbay\utils\CORSFilter.class
+ec\edu\ups\appdis\g1\EvaluacionWSSagbay\model\Credito.class
+ec\edu\ups\appdis\g1\EvaluacionWSSagbay\service\servicioRest.class
+ec\edu\ups\appdis\g1\EvaluacionWSSagbay\utils\Resources.class
+ec\edu\ups\appdis\g1\EvaluacionWSSagbay\utils\Respuesta.class
+ec\edu\ups\appdis\g1\EvaluacionWSSagbay\dao\CuotaDao.class
+ec\edu\ups\appdis\g1\EvaluacionWSSagbay\model\Cliente.class
+ec\edu\ups\appdis\g1\EvaluacionWSSagbay\model\Fachada.class
+ec\edu\ups\appdis\g1\EvaluacionWSSagbay\dao\ClienteDao.class
+ec\edu\ups\appdis\g1\EvaluacionWSSagbay\utils\ApplicationPath.class

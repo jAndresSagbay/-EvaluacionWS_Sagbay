@@ -6,14 +6,22 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import ec.edu.ups.appdis.g1.clienteRest.clienterest.FachadaCli;
+import ec.edu.ups.appdis.g1.clienteRest.model.Cuota;
 import ec.edu.ups.appdis.g1.clienteRest.model.Fachada;
+import ec.edu.ups.appdis.g1.clienteRest.model.Respuesta;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 public class Ventana {
 
@@ -25,6 +33,8 @@ public class Ventana {
 	private JTextField txtMonto;
 	private JLabel lblNewLabel_3;
 	private JTextField txtPlazos;
+	private JTextArea textArea;
+
 
 	/**
 	 * Launch the application.
@@ -54,10 +64,10 @@ public class Ventana {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 566, 380);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JPanel panel = new JPanel();
+		final JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
@@ -88,7 +98,7 @@ public class Ventana {
 		txtMonto.setBounds(141, 107, 237, 20);
 		panel.add(txtMonto);
 		
-		lblNewLabel_3 = new JLabel("# Plazos");
+		lblNewLabel_3 = new JLabel("PLazo");
 		lblNewLabel_3.setBounds(7, 143, 124, 14);
 		panel.add(lblNewLabel_3);
 		
@@ -105,12 +115,34 @@ public class Ventana {
 				fachada.setNumeroCuenta(Integer.parseInt(txtCuenta.getText()));
 				fachada.setNumerodemesesplazo(Integer.parseInt(txtPlazos.getText()));
 				fachada.setValorDecredito(Double.parseDouble((txtMonto.getText())));
-				FachadaCli cli= new FachadaCli();
-				cli.registra(fachada);
 				
+				FachadaCli cli= new FachadaCli();
+				Respuesta respuesta = cli.registra(fachada);
+				JOptionPane.showConfirmDialog(null, "Codigo:  "+respuesta.getCodigo()+"  Mensaje "+respuesta.getMensaje());
+				
+				List<Cuota> cuotas = cli.getCuotas();
+				
+				for (int i = 0; i < cuotas.size(); i++) {
+					textArea.append("\n"+cuotas.get(i).toString());
+					//JScrollPane scroll= new JScrollPane(textArea,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+					//textArea.append(cuotas.get(i).toString());
+					//panel.add(scroll);
+					System.out.println(cuotas.get(i).toString());
+				}
+				
+				
+				System.out.println(cuotas);
 			}
 		});
 		btnNewButton.setBounds(141, 190, 176, 20);
 		panel.add(btnNewButton);
+		
+		textArea = new JTextArea();
+		textArea.setBounds(47, 240, 478, 90);
+		panel.add(textArea);
+		
+		
+		
+		
 	}
 }

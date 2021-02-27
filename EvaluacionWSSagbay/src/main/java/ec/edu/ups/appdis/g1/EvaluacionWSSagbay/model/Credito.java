@@ -17,8 +17,12 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Credito implements Serializable{
-private static final long serialVersionUID = 1L;
-	
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6956578421408965408L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

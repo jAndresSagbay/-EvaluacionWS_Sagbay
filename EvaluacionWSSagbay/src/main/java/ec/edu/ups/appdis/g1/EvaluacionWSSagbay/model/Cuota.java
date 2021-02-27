@@ -8,7 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 @Entity
-public class Cuota implements Serializable {
+public class Cuota implements Serializable{
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4707012973351643803L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

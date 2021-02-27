@@ -6,7 +6,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-
 import ec.edu.ups.appdis.g1.EvaluacionWSSagbay.dao.ClienteDao;
 import ec.edu.ups.appdis.g1.EvaluacionWSSagbay.dao.CreditoDao;
 import ec.edu.ups.appdis.g1.EvaluacionWSSagbay.dao.CuotaDao;
@@ -16,35 +15,35 @@ import ec.edu.ups.appdis.g1.EvaluacionWSSagbay.model.Cuota;
 import ec.edu.ups.appdis.g1.EvaluacionWSSagbay.model.Fachada;
 import ec.edu.ups.appdis.g1.EvaluacionWSSagbay.utils.Respuesta;
 
-
 @Stateless
 public class GestionON {
 	@Inject
 	ClienteDao clientedao;
+	
 	@Inject
 	CreditoDao creditodao;
+	
 	@Inject
 	CuotaDao cuotadao;
 	
-	public Respuesta CrearPoliza(Fachada fachada) {
-		Respuesta respuesta= new Respuesta();
+	public Respuesta crearPoliza(Fachada fachada) {
 		
+		Respuesta respuesta = new Respuesta();
+		Cliente clienteCuenta= clientedao.buscarClienteCuenta(fachada.getNumeroCuenta());
+		boolean cuentaexiste=clienteCuenta.getCuenta()==fachada.getNumeroCuenta();
 		
-		Cliente clienteCuenta= clientedao.buscarClientecuenta(fachada.getNumeroCuenta());
-		Cliente clienteCedula  = clientedao.buscarClienteCedulaP(fachada.getCedula());
-		if (clienteCuenta== null) {
+		boolean cuentacedulaexiste= clienteCuenta.getCedula().equals(fachada.getCedula());
+		System.out.println(cuentacedulaexiste);
+		 if (cuentaexiste==false) {
 			respuesta.setCodigo(50);
 			respuesta.setMensaje("Error cuenta incorrecta");
-			
-		}else if (clienteCedula== null) {
+		
+		} else if (cuentacedulaexiste==false) {
 				respuesta.setCodigo(50);
 				respuesta.setMensaje("Error cedula incorrecta");
 				
-		}else if (clienteCedula == null && clienteCuenta == null) {
-			respuesta.setCodigo(50);
-			respuesta.setMensaje("Error cliente no existe");
-		
-		}else {
+		}else if (cuentaexiste==true && cuentacedulaexiste==true) {
+			
 			Credito credito= new Credito();
 			credito.setFechaSolicitud(new Date());
 			credito.setMonto(fachada.getValorDecredito());
@@ -56,10 +55,15 @@ public class GestionON {
 				cuota.setValor(valorCuotasDouble);
 				cuota.setFechaAsignada(new Date());
 				credito.addCredito(cuota);
+				
+				System.out.println("CREDITO >>>> >>>> "+credito.toString());
+			clienteCuenta.addCredito(credito);
+			System.out.println(clienteCuenta.toString());
+			clientedao.actualizarCliente(clienteCuenta);
+			respuesta.setCodigo(1);
+			respuesta.setMensaje("ok");
 			}
-						
 			
-			creditodao.crearCredito(credito);
 		}
 		
 		return respuesta;

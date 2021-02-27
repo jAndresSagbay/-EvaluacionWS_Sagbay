@@ -3,6 +3,12 @@ package ec.edu.ups.appdis.g1.EvaluacionWSSagbay.model;
 import java.io.Serializable;
 
 public class Fachada implements Serializable {
+	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1366031276640656228L;
 	private String cedula ;
 	private int numeroCuenta;
 	private Double valorDecredito;
